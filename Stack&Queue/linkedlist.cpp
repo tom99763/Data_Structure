@@ -112,11 +112,30 @@ class linkedlist{
 		
 		void reverse(){
 			/*
-			update m's link:
-			init : 0(l)->n1(m)->n2(r)
-			process : nl->nm->nr
-			final : r null --> new m haven't update --> m->link=l
-			update first : first=m
+			every loop update m's link:
+			
+			init :
+			0->[]->[]->[]->...
+			|  |   |
+		    l<-m   r 
+		    
+		    next : 
+		    
+		    0->[]->[]->[]->...
+		       |   |   |
+		    0<-l <-m   r
+		    
+		    final :
+		    
+		    ...[]->[]->[]->0
+		       |   |   |
+		       l<- m   r
+		       
+		    outside the loop :
+		    []->[]->[]->0
+		        |   |  
+		        l<-m   
+		    
 			*/ 
 			Node *l=0,*m=first,*r=first->link;
 			while(r!=0){
