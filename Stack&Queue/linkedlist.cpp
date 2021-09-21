@@ -1,3 +1,4 @@
+   
 #include<stdio.h>
 #include<iostream>
 using namespace std;
@@ -109,8 +110,40 @@ class linkedlist{
 		}
 		
 		
+		void reverse(){
+			/*
+			update m's link:
+			init : 0(l)->n1(m)->n2(r)
+			process : nl->nm->nr
+			final : r null --> new m haven't update --> m->link=l
+			update first : first=m
+			*/ 
+			Node *l=0,*m=first,*r=first->link;
+			while(r!=0){
+				m->link=l;
+				
+				l=m;
+				m=r;
+				r=r->link;
+			}
+			m->link=l;
+			first=m;
+		}
+		
+		void clear(){
+			while(first!=0){
+				Node *current=first;
+				first=first->link;//此時current還指向first更新前的obj 
+				delete current;
+			}
+		}
+		
 		void printall(){
 			Node *current=first;
+			if(current==0){
+				printf("list is empty");
+				return;
+			}
 			while(current!=0){
 				cout<<current->data;
 				current=current->link;
@@ -151,7 +184,14 @@ int main(){
 	
 	printf("\n");
 	ll.replace(100,1);//out of idx
+	
+	printf("\n");
+	ll.reverse();
+	ll.printall();//543921
+	
+	
+	printf("\n");
+	ll.clear();
+	printf("after clear :");
+	ll.printall();
 }
-
-
-
