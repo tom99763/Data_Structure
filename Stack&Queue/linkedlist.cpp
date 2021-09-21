@@ -10,41 +10,41 @@ class Node{
 		Node(int data){
 			//constructor
 			//assign data
-			this->data=data; //§âself.data assignµ¹input data 
+			this->data=data; //æŠŠself.data assignçµ¦input data 
 		}
 };
 
 
 class linkedlist{
 	public :
-		Node *first;//«ü¦V²Ä¤@­ÓNode 
+		Node *first;//æŒ‡å‘ç¬¬ä¸€å€‹Node 
 		void add_back(int data){
-			//¦b³Ì§Àºİ¥[¤Jnode
+			//åœ¨æœ€å°¾ç«¯åŠ å…¥node
 			//Sequential Access 
-			Node *x=new Node(data);//«Å§i¤@­Óobject pointer,assign dataµ¹¥Lªºatt data,¨Ã°t¸mMemory space 
+			Node *x=new Node(data);//å®£å‘Šä¸€å€‹object pointer,assign dataçµ¦ä»–çš„att data,ä¸¦é…ç½®Memory space 
 			if(first==0){
-				//¦pªGlist¬OªÅªº,³o­Ónode´N¬O²Ä¤@­Ónode 
+				//å¦‚æœlistæ˜¯ç©ºçš„,é€™å€‹nodeå°±æ˜¯ç¬¬ä¸€å€‹node 
 				first=x;
-				x->link=0;//±Nxªº¤U¤@­Ó«ü¦VNULL 
+				x->link=0;//å°‡xçš„ä¸‹ä¸€å€‹æŒ‡å‘NULL 
 				return;
 			}
-			Node *current=first; //³Ìªñvisitªºnode,current«ü¦Vfirst«ü¦Vªºnode 
+			Node *current=first; //æœ€è¿‘visitçš„node,currentæŒ‡å‘firstæŒ‡å‘çš„node 
 			while(current->link!=0){ 
 				current=current->link;
 			}
-			current->link=x;//¦b§Àºİ¥[¤Jnode x 
-			x->link=0;//±Nxªº¤U¤@­Ó«ü¦VNULL 
+			current->link=x;//åœ¨å°¾ç«¯åŠ å…¥node x 
+			x->link=0;//å°‡xçš„ä¸‹ä¸€å€‹æŒ‡å‘NULL 
 		}
 		
 		void add_front(int data){
-			//¦b³Ì«eºİ¥[¤Jnode
+			//åœ¨æœ€å‰ç«¯åŠ å…¥node
 			Node *x=new Node(data);//allocate memory space 
-			x->link=first;
-			first=x;
+			x->link=first;//xçš„æŒ‡å‘firstæŒ‡å‘çš„node
+			first=x;//firsté‡æ–°æŒ‡å‘
 		}
 		
 		bool insert(int idx,int data){
-			//¦bidx«e­±´¡¤J¤@­Ónode 
+			//åœ¨idxå‰é¢æ’å…¥ä¸€å€‹node 
 			Node *x=new Node(data);
 			int current_idx=0;
 			Node *current=first;
@@ -61,25 +61,25 @@ class linkedlist{
 		}
 		
 		bool delete_node(int idx){
-			//§âidxªºnode§R°£
+			//æŠŠidxçš„nodeåˆªé™¤
 			int current_idx=0;
 			Node *current=first;
 			if(idx==0){
 				first=current->link;
 				delete current;
 			}
-			Node *target;//«Å§iobject pointer,ÁÙ¥¼«ü¦VªF¦è 
+			Node *target;//å®£å‘Šobject pointer,é‚„æœªæŒ‡å‘æ±è¥¿ 
 			while(current_idx!=idx-1){
 				if(current==0){
 					printf("out of idx");
 					return false;
 				}
-				//·j´M¥Ø¼Ğidxªº«e¤@­Ó 
+				//æœå°‹ç›®æ¨™idxçš„å‰ä¸€å€‹ 
 				current=current->link;
 			} 
-			target=current->link;//§ä¨ì±ı§R°£ªºnode 
-			current->link=target->link;//§â¤W¤@­Ónodeªºlink«ü¦Vtargetªº¤U¤@­Ónode
-			delete target; //§âtarget±qMemory§R°£ 
+			target=current->link;//æ‰¾åˆ°æ¬²åˆªé™¤çš„node 
+			current->link=target->link;//æŠŠä¸Šä¸€å€‹nodeçš„linkæŒ‡å‘targetçš„ä¸‹ä¸€å€‹node
+			delete target; //æŠŠtargetå¾Memoryåˆªé™¤ 
 			return true;
 		}
 		
@@ -101,9 +101,9 @@ class linkedlist{
 				}
 				current=current->link;
 			}
-			target=current->link;//§ä¨ì±ı§R°£ªºnode 
-			current->link=x;//±N«e¤@­Ónode«ü¦V·sªºx 
-			x->link=target->link;//±N·sªºx«ü¦Vtargetªº¤U¤@­Ó 
+			target=current->link;//æ‰¾åˆ°æ¬²åˆªé™¤çš„node 
+			current->link=x;//å°‡å‰ä¸€å€‹nodeæŒ‡å‘æ–°çš„x 
+			x->link=target->link;//å°‡æ–°çš„xæŒ‡å‘targetçš„ä¸‹ä¸€å€‹ 
 			delete target;
 			return true;
 		}
@@ -128,18 +128,18 @@ int main(){
 	ll.printall();//12345
 	printf("\n");
 	
-	ll.add_front(2);//¦b³Ì«e­±¥[¤J2
+	ll.add_front(2);//åœ¨æœ€å‰é¢åŠ å…¥2
 	ll.printall();//212345
 	printf("\n"); 
 	
-	ll.insert(2,9);	//¦bidx=2ªº«e­±´¡¤J9
+	ll.insert(2,9);	//åœ¨idx=2çš„å‰é¢æ’å…¥9
 	ll.printall();//2129345
 	
 	printf("\n");
 	ll.insert(100,8);//out of idx
 	
 	printf("\n");
-	ll.delete_node(1);//±Nidx=1ªºnode§R°£
+	ll.delete_node(1);//å°‡idx=1çš„nodeåˆªé™¤
 	ll.printall(); //229345
 	
 	printf("\n");
