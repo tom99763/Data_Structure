@@ -39,7 +39,7 @@ class linkedlist{
 		void add_front(int data){
 			//在最前端加入node
 			Node *x=new Node(data);//allocate memory space 
-			x->link=first;//x的指向first指向的node
+			x->link=first;//x指向first指向的node
 			first=x;//first重新指向
 		}
 		
