@@ -1,6 +1,6 @@
 #include<stdio.h>
 #include<iostream>
-#include<cstdlib> //ÀH¾÷¶Ã¼Æ®M¥ó 
+#include<cstdlib> //éš¨æ©Ÿäº‚æ•¸å¥—ä»¶ 
 using namespace std;
 
 //generate unsorted sequence
@@ -35,18 +35,18 @@ void swap(int *a,int *b){
 
 void insertion_sort(int seq[],int n){
 	/*
-	±N²Äiµ§data©ñ¶i«ei-1µ§¤wsortedªºdata,ª½¨ì¥ş³¡³£¶]¹L¤@¦¸ 
-	¤ñ¸ûdata:
-	    ¥ı©ñ¤Ji-1µ§ªº³Ì«á¤@­Ó,¸ò«e­±ªºj¤ñ¸û,­Yi<j,i¸òj,swap
-	best case: ¤p¨ì¤j O(n)-->n¦^¦X,¨C¦^¦X·j´M1¦¸ 
-	worst case : ¤j¨ì¤p O(n^2)-->n¦^¦X,¨C¦^¦X·j´Mn¦¸ 
+	å°‡ç¬¬iç­†dataæ”¾é€²å‰i-1ç­†å·²sortedçš„data,ç›´åˆ°å…¨éƒ¨éƒ½è·‘éä¸€æ¬¡ 
+	æ¯”è¼ƒdata:
+	    å…ˆæ”¾å…¥i-1ç­†çš„æœ€å¾Œä¸€å€‹,è·Ÿå‰é¢çš„jæ¯”è¼ƒ,è‹¥i<j,iè·Ÿj,swap
+	best case: å°åˆ°å¤§ O(n)-->nå›åˆ,æ¯å›åˆæœå°‹1æ¬¡ 
+	worst case : å¤§åˆ°å° O(n^2)-->nå›åˆ,æ¯å›åˆæœå°‹næ¬¡ 
 	stable sorting : [5',5,8,1]-->[1,5',5,8]
 	*/
 	for(int i=1;i<n;i++){
 		int j=i;
 		while(j>=0){
 			if(seq[j]<seq[j-1]){
-				//¤£¯à<=,³o¼Ë·|ÅÜ¦¨unstable sorting 
+				//ä¸èƒ½<=,é€™æ¨£æœƒè®Šæˆunstable sorting 
 				swap(seq[j],seq[j-1]);//call by address
 			}
 			j--;
@@ -56,8 +56,8 @@ void insertion_sort(int seq[],int n){
 
 void selection_sort(int list[],int n){
 	/*
-	±q©|¥¼¿ï¾Üªºelement¤¤¬D¿ï³Ì¤pªº¸ò²Äi­Óelement°µswap  
-	best case = worst case: O(n^2), °µn¦^¦X,¨C¦^¦X³£­n±½¹Ln-kµ§¸ê®Æ¤~§ä¨ì³Ì¤p 
+	å¾å°šæœªé¸æ“‡çš„elementä¸­æŒ‘é¸æœ€å°çš„è·Ÿç¬¬iå€‹elementåšswap  
+	best case = worst case: O(n^2), åšnå›åˆ,æ¯å›åˆéƒ½è¦æƒén-kç­†è³‡æ–™æ‰æ‰¾åˆ°æœ€å° 
 	unstable sorting : [5,5',1]-->[1,5',5]
 	*/
 	for(int i=0;i<n;i++){
@@ -80,9 +80,9 @@ void selection_sort(int list[],int n){
 
 void bubble_sort(int list[],int n){
 	/*
-	¨C¦¸¦pªGlist[i]>list[j]«h«e«áswapª½¨ì¦¹¦^¦X¨S¦³µo¥Íswap 
-	best case : ¤p¨ì¤j O(n),¦¹¦^¦X³£¨S¥æ´« 
-	worst case: ¤j¨ì¤p O(n^2) 
+	æ¯æ¬¡å¦‚æœlist[i]>list[j]å‰‡å‰å¾Œswapç›´åˆ°æ­¤å›åˆæ²’æœ‰ç™¼ç”Ÿswap 
+	best case : å°åˆ°å¤§ O(n),æ­¤å›åˆéƒ½æ²’äº¤æ› 
+	worst case: å¤§åˆ°å° O(n^2) 
 	stable sorting
 	*/
 	while(true){
@@ -94,12 +94,19 @@ void bubble_sort(int list[],int n){
 			}
 		}
 		if(flag==false){
-			return ;//¦pªG¦¹¦^¦X³£¨S¦³swap¥Nªí±Æ¦n¤F,ª½±µreturn 
+			return ;//å¦‚æœæ­¤å›åˆéƒ½æ²’æœ‰swapä»£è¡¨æ’å¥½äº†,ç›´æ¥return 
 		}
 	}
 }
 
 void shell_sort(int list[]){
+	/*
+	é¡ä¼¼bubble sort,ä½†stepsizeç”±spanæ±ºå®š
+	é€šå¸¸æŒ‘span=ç„¡æ¢ä»¶é€²ä½[n/2],nç‚ºå›åˆæ•¸,ä¸”æ¯å›åˆnæœƒè¢«æ›´æ–°ç‚º[n/2]
+	æ¯å›åˆæœ‰spanæ¬¡æœå°‹è·¯å¾‘ 
+	Best Case:ç”±spanæ±ºå®š
+	Worst Case=Average Case : O(n^2) 
+	*/
 }
 
 
@@ -108,12 +115,12 @@ void shell_sort(int list[]){
 void quick_sort(int list[],int left,int right){
 	/*
 	input : left=0,right=n-1
-	¨C¦^¦X¨ú²Ä¤@­Óelement¬°pivot key«á:
-	     i±qpivotªº¤U¤@­Ó¶}©l§ä¤ñpivot¤jªº,j±q³Ì«á¶}©l§ä¤pªº,­Y³£§ä¨ìswap(list[i],list[j])
-	     ­Yj<=i,«h±Npivot key¸òlist[j]¥æ´« 
-	Note :¨C¦^¦Xµ²§ô«á,pivot keyªº¥ªÃä­n¤ñ¦Û¤v¤p,¥kÃä­n¤ñ¦Û¤v¤j  
+	æ¯å›åˆå–ç¬¬ä¸€å€‹elementç‚ºpivot keyå¾Œ:
+	     iå¾pivotçš„ä¸‹ä¸€å€‹é–‹å§‹æ‰¾æ¯”pivotå¤§çš„,jå¾æœ€å¾Œé–‹å§‹æ‰¾å°çš„,è‹¥éƒ½æ‰¾åˆ°swap(list[i],list[j])
+	     è‹¥j<=i,å‰‡å°‡pivot keyè·Ÿlist[j]äº¤æ› 
+	Note :æ¯å›åˆçµæŸå¾Œ,pivot keyçš„å·¦é‚Šè¦æ¯”è‡ªå·±å°,å³é‚Šè¦æ¯”è‡ªå·±å¤§  
 	Best Case : T(n)=2*T(n/2)+c*n-->O(nlogn)
-	Worst Case : ¤j¨ì¤por¤p¨ì¤j --> O(n^2) 
+	Worst Case : å¤§åˆ°å°orå°åˆ°å¤§orå…¨éƒ¨ç›¸åŒ T(n)=T(n-1)+c*n --> O(n^2) 
 	unstable sorting : [2,5,5'.....1]--->[2,1,5',.....5]
 	*/
 	if(left<right){
@@ -121,10 +128,10 @@ void quick_sort(int list[],int left,int right){
 		int i=left,j=right+1;
 		do{
 			do{
-				i++;//©¹¥ª¶}©l§ä,§ä¤ñpivot¤jªº 
-			}while(pivot>list[i]&i<right);
+				i++;//å¾€å·¦é–‹å§‹æ‰¾,æ‰¾æ¯”pivotå¤§çš„ 
+			}while(pivot>list[i]&i<right);	
 			do{
-				j--;//©¹¥k¶}©l§ä,§ä¤ñpivot¤pªº 
+				j--;//å¾€å³é–‹å§‹æ‰¾,æ‰¾æ¯”pivotå°çš„ 
 			}while(pivot<=list[j]&j>left); 
 			if(i<j){
 				swap(list[i],list[j]);
@@ -138,13 +145,25 @@ void quick_sort(int list[],int left,int right){
 
 
 void merge_sort(int list){
+	/*
+	å…©å…©åˆä½µæ³•
+	æœ‰åˆ†ç‚ºiterativeè·Ÿrecursiveå…©ç¨®æ–¹æ³• 
+	Best case=Worst case=Average Case : æ¯å›åˆæœ€å¤šæ¯”n-1æ¬¡O(n),ä¸”åˆ†å‰²åœ–åƒæ˜¯ä¸€å€‹å€’ç«‹çš„Complete B.T.O(logn)-->O(nlogn)
+	Stable sorting 
+	*/ 
 }
 
 void heap_sort(int list){
+	/*
+	heap : ç‚ºä¸€å€‹Complete B.T.
+	Max-Heap : parentçš„å€¼å¿…å®šå¤§æ–¼child
+	Min-Heap : parentçš„å€¼å¿…å®šå°æ–¼child 
+	Sortä½¿ç”¨deleteä¾†å¯¦ç¾ 
+	*/
 }
 
 int main(){
-	int n=16;
+	int n=100;
 	int arr[n];
 	gen_arr(arr,n);//gen data
 	cout<<"origin array : \n";
@@ -169,14 +188,14 @@ int main(){
 	gen_arr(arr,n);//gen data
 	//bubble sort
 	bubble_sort(arr,n);
-	cout<<"\nafter bubble sort sort : \n";
+	cout<<"\nafter bubble sort: \n";
 	for(int i=0;i<n;i++){
 		cout<<arr[i]<<" ";
 	}
 	gen_arr(arr,n);
 	//quick sort
 	quick_sort(arr,0,n-1);
-	cout<<"\nafter quick sort sort : \n";
+	cout<<"\nafter quick sort : \n";
 	for(int i=0;i<n;i++){
 		cout<<arr[i]<<" ";
 	}
